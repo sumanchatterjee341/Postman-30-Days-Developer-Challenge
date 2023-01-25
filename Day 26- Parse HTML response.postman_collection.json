@@ -1,0 +1,232 @@
+{
+	"info": {
+		"_postman_id": "5787c5b4-a91b-4e5b-a775-436374240e33",
+		"name": "Day 26: Parse HTML response",
+		"description": "## Instructions for Day 26: Parse HTML response\n\n1.  **Get the challenge:** Fork [the parent collection `Day 26: Parse HTML response`](https://www.postman.com/postman/workspace/30-days-of-postman-for-developers/documentation/1559645-9f9419fe-5249-4b44-b07f-4cb3ef913c81) from the main workspace to your own public workspace.\n2.  **Read the documentation:** In your fork, select the first folder. Expand the context bar on the right to follow the instructions in the collection documentation.\n3.  **Submit your solution:** Select the second folder `Submit your solution` and follow the instructions in the documentation to validate your solution.\n    \n\n## Concepts covered\n\n*   [Variables](https://learning.postman.com/docs/sending-requests/variables/)\n*   [Scripts](https://learning.postman.com/docs/writing-scripts/intro-to-scripts/)\n*   [Using external libraries](https://learning.postman.com/docs/writing-scripts/script-references/postman-sandbox-api-reference/#using-external-libraries)\n*   [Writing tests](https://learning.postman.com/docs/writing-scripts/test-scripts/)\n    \n\n## Additional resources\n\n*   [Example](https://www.postman.com/postman/workspace/postman-answers/collection/9215231-cd114167-c5a1-495e-a50f-29d6dd5af4e0?ctx=documentation) in Postman Answers workspace\n*   [Check for Broken Links on Your Website Using a Postman Collection](https://blog.postman.com/check-for-broken-links-on-your-website-using-a-postman-collection/) blog\n*   [Parse HTML](https://www.tiktok.com/@joycejetson/video/7075694107703692590) tiktok\n    \n\n## Next challenge\n\n*   [Scenario testing](https://www.postman.com/postman/workspace/30-days-of-postman-for-developers/documentation/1559645-e9968036-7ad8-4daa-97c3-331184213392)",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "22912731"
+	},
+	"item": [
+		{
+			"name": "Parse HTML response",
+			"item": [
+				{
+					"name": "bing",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"//const cheerio = require('cheerio');\r",
+									"const html = pm.response.text();\r",
+									"const $ = cheerio.load(html);\r",
+									"let links = [];\r",
+									"$('body a').each(function(){\r",
+									"    console.log($(this).attr('href'));\r",
+									"    links.push($(this).attr('href'));\r",
+									"})\r",
+									"console.log(links);\r",
+									"pm.collectionVariables.set(\"links\",JSON.stringify(links));\r",
+									"\r",
+									"\r",
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"collectionVariable is Array\", function () {\r",
+									"pm.expect(JSON.parse(pm.collectionVariables.get(\"links\"))).to.be.an(\"array\");\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://www.bing.com/search?q=postman",
+							"protocol": "https",
+							"host": [
+								"www",
+								"bing",
+								"com"
+							],
+							"path": [
+								"search"
+							],
+							"query": [
+								{
+									"key": "q",
+									"value": "postman"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"description": "It's time to work on your next challenge.\n\n1. **Add a request**: Add a request called `bing` to the folder `Parse HTML response` with the following details:\n  - `GET` request method\n  - `https://www.bing.com/search` request URL\n  - Query parameter `q` with the value of any term, such as `postman`.\n\n  Hit **Send**, and look at the HTML response in Pretty, Raw, or Preview mode to ensure that you are receiving some search results.\n1. **Scrape web links**: Under the **Tests** tab, write a script using [the built-in library cheerio](https://learning.postman.com/docs/writing-scripts/script-references/postman-sandbox-api-reference/#using-external-libraries) to save all the links in the HTML response as an array. Try to only collect links that are displayed in the search results. And then store the array as a [collection variable](https://learning.postman.com/docs/sending-requests/variables/#variable-scopes) called `links`.\n\n  Hit **Send** to ensure your collection variable contains an array of links. Then [persist the collection variable](https://learning.postman.com/docs/sending-requests/variables/#sharing-and-persisting-data) so that the array is saved with the collection under `INITIAL VALUE` as well as `CURRENT VALUE`.\n1. **Add two tests**: Write a test to ensure a successful response status code from bing. Then write another test to validate the information being stored as a collection variable is formatted as an array. Send the request to make sure the tests pass appropriately, and save your changes. \n\nOnce you complete these steps, move on to the next folder in this collection to submit your solution. Follow the instructions in the request documentation.",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			]
+		},
+		{
+			"name": "Submit your solution",
+			"item": [
+				{
+					"name": "submit",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"// counter for passed tests\r",
+									"let pass = 0\r",
+									"let totalToPass = 6\r",
+									"\r",
+									"let collection = pm.response.json().collection\r",
+									"\r",
+									"pm.test(\"If you have any failures, review the failed test results or ask for support in the community forum. Remember to save your changes if you update the collection. When all of your tests pass, you are done with today's challenge.\", () => {\r",
+									"    pm.expect(true);\r",
+									"    pass += 1\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Status code is 200\", () => {\r",
+									"    pm.response.to.have.status(200);\r",
+									"    pass += 1\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Correct collection returned\", () => {\r",
+									"    pm.expect(collection.info.name).equals(\"Day 26: Parse HTML response\")\r",
+									"    pass += 1\r",
+									"})\r",
+									"\r",
+									"pm.test(\"Request added correctly\", () => {\r",
+									"    pm.expect(collection.item[0].item.length, 'check number of requests').equals(1)\r",
+									"\r",
+									"    let bingRequest = collection.item[0].item.find(req => { return req.name === \"bing\"})\r",
+									"    pm.expect(bingRequest.name, 'check name').equals(\"bing\")\r",
+									"    pm.expect(bingRequest.request.method, 'check method').equals(\"GET\")\r",
+									"    pm.expect(bingRequest.request.url.raw, 'check url').includes(\"https://www.bing.com/search?q=\")\r",
+									"\r",
+									"    pass += 1\r",
+									"})\r",
+									"\r",
+									"pm.test(\"Script added correctly\", () => {\r",
+									"    let bingRequest = collection.item[0].item.find(req => { return req.name === \"bing\"})\r",
+									"\r",
+									"    let test = bingRequest.event.find(event => {return event.listen === \"test\"})\r",
+									"    pm.expect(test.listen, 'check test script').equals(\"test\")\r",
+									"    pm.expect(test.script.exec.toString(), 'check cheerio').to.include(\"cheerio.load\")\r",
+									"\r",
+									"    let collVar = collection.variable.find(variable => { return variable.key === 'links'})\r",
+									"    pm.expect(collVar.key, 'check collection variable set').to.equal('links')\r",
+									"    pm.expect(JSON.parse(collVar.value), 'check collection variable array').to.be.an('array')\r",
+									"\r",
+									"    pass += 1\r",
+									"})\r",
+									"\r",
+									"pm.test(\"Tests added correctly\", () => {\r",
+									"    let bingRequest = collection.item[0].item.find(req => { return req.name === \"bing\"})\r",
+									"\r",
+									"    let test = bingRequest.event.find(event => {return event.listen === \"test\"})\r",
+									"\r",
+									"    pm.expect(test.script.exec.toString(), 'check tests').to.include(\"pm.test\")\r",
+									"\r",
+									"    pass += 1\r",
+									"})\r",
+									"\r",
+									"// visualization for test results\r",
+									"let template\r",
+									"if (pass == totalToPass) {\r",
+									"    template = `🍪 passing!\r",
+									"        <br />\r",
+									"        <img src=\"https://media4.giphy.com/media/9fuvOqZ8tbZOU/giphy.gif?cid=ecf05e473iskrumhqsks5kkf6xvzxx87smuqhwmzpg9s4yv9&rid=giphy.gif&ct=g\" />\r",
+									"    `\r",
+									"} else {\r",
+									"    template = `🙅 please try again\r",
+									"        <br />\r",
+									"        <img src=\"https://media1.giphy.com/media/tP3Tu61F2RBZe/giphy.gif?cid=ecf05e47c5swa49om8lx3mvexwarnmxpqzs8zh5qa8a2cjm2&rid=giphy.gif&ct=g\" />\r",
+									"    `\r",
+									"}\r",
+									"pm.visualizer.set(template)"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "x-api-key",
+								"value": "{{postman_api_key}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "https://api.getpostman.com/collections/22912731-5787c5b4-a91b-4e5b-a775-436374240e33",
+							"protocol": "https",
+							"host": [
+								"api",
+								"getpostman",
+								"com"
+							],
+							"path": [
+								"collections",
+								"22912731-5787c5b4-a91b-4e5b-a775-436374240e33"
+							]
+						},
+						"description": "It's time to submit your solution.\n\n1. **Use a Postman environment:** Find the `Postman API env` environment from the previous challenge. Update the `collectionUid` with the current collection's ID.\n1. **Validate your solution**: Save your changes in the collection and environment. Hit **Send** and look under the **Tests** tab of the server response at the bottom to review your test results.\n\nIf you have any failures, review the failed test results or ask for support in the [community forum](https://community.postman.com/). When all of your tests pass, you are done with today's challenge. Remember to save your changes as you'll need to pass all the challenges to claim a **30 days of Postman** badge."
+					},
+					"response": []
+				}
+			],
+			"description": "Follow the instructions in the request documentation."
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "links",
+			"value": "[\"#\",\"/?FORM=Z9FD1\",\"javascript:void(0);\",\"javascript:void(0);\",\"javascript:void(0);\",\"javascript:void(0)\",\"/rewards/dashboard\",\"javascript:void(0);\",\"javascript:void(0);\",\"/search?q=postman&setlang=hi&sid=3504A6972ED365F82E74B4342F756444\",\"/search?q=postman&setlang=bn&sid=3504A6972ED365F82E74B4342F756444\",\"/search?q=postman&setlang=ur&sid=3504A6972ED365F82E74B4342F756444\",\"/search?q=postman&setlang=pa-guru&sid=3504A6972ED365F82E74B4342F756444\",\"/search?q=postman&setlang=mr&sid=3504A6972ED365F82E74B4342F756444\",\"/search?q=postman&setlang=te&sid=3504A6972ED365F82E74B4342F756444\",\"/search?q=postman&setlang=ta&sid=3504A6972ED365F82E74B4342F756444\",\"/search?q=postman&setlang=kn&sid=3504A6972ED365F82E74B4342F756444\",\"/search?q=postman&setlang=gu&sid=3504A6972ED365F82E74B4342F756444\",\"/search?q=postman&setlang=ml&sid=3504A6972ED365F82E74B4342F756444\",\"/search?q=postman&setlang=or&sid=3504A6972ED365F82E74B4342F756444\",\"/?scope=web&FORM=HDRSC1\",\"/images/search?q=postman&FORM=HDRSC2\",\"/videos/search?q=postman&FORM=HDRSC3\",\"/maps?q=postman&FORM=HDRSC4\",\"/news/search?q=postman&FORM=HDRSC6\",\"/shop?q=postman&FORM=SHOPTB\",\"javascript:void(0);\",\"/travel/search?q=postman&m=flights&FORM=FBSCOP\",\"/travel/search?q=postman&m=travel&FORM=THSCOP\",\"/travel/search?q=postman&m=hotels&FORM=HTSCOP\",\"javascript:\",\"https://www.postman.com/\",\"javascript:void(0)\",\"https://www.postman.com/downloads/\",\"https://www.postman.com/product/what-is-postman/\",\"https://www.postman.com/api-documentation-tool/\",\"https://www.postman.com/api-evangelist/workspace/space/overview\",\"https://learning.postman.com/docs/writing-scripts/pre-request-scripts/\",\"https://www.postman.com/videoask/workspace/videoask-s-public-workspace/overview\",\"https://postman.com/dolbyio\",\"https://www.postman.com/axisbank-apibanking\",\"https://www.postman.com/\",\"https://www.postman.com/\",\"https://www.postman.com/downloads/canary\",\"https://www.postman.com/downloads/release-notes/\",\"https://learning.postman.com/\",\"https://www.postman.com/\",\"https://www.postman.com/postman/\",\"javascript:void(0)\",\"https://www.postman.com/products/\",\"javascript:void(0)\",\"https://www.postman.com/\",\"/search?q=What%20is%20postman%3F\",\"https://www.postman.com/products/\",\"/search?q=What%20is%20the%20difference%20between%20postman%20collections%20and%20postman%20workspaces%3F\",\"https://www.postman.com/downloads/\",\"/search?q=How%20do%20I%20get%20Started%20with%20the%20postman%20API%20platform%3F\",\"https://www.postman.com/product/what-is-postman/\",\"/search?q=What%20is%20postman%27s%20full-lifecycle%20approach%20to%20governance%3F\",\"javascript:void(0)\",\"https://app.getpostman.com/app/download/win64\",\"https://app.getpostman.com/app/download/win64\",\"https://learning.postman.com/\",\"javascript:void(0)\",\"/videos/search?q=postman&qpvt=postman&FORM=VDRE\",\"/videos/search?q=postman&docid=603504061146603006&mid=2D31E2872F3191C327842D31E2872F3191C32784&view=detail&FORM=VIRE\",\"/videos/search?q=postman&docid=603502115526423071&mid=F310B28849FAFFE14458F310B28849FAFFE14458&view=detail&FORM=VIRE\",\"/videos/search?q=postman&docid=603541719419998688&mid=DD8BE5DF1E878CCF89BFDD8BE5DF1E878CCF89BF&view=detail&FORM=VIRE\",\"/videos/search?q=postman&docid=603538837496734567&mid=F7351473A5A26DA87BAFF7351473A5A26DA87BAF&view=detail&FORM=VIRE\",\"/videos/search?q=postman&docid=603519377000303497&mid=31D112F97448ABD97E4B31D112F97448ABD97E4B&view=detail&FORM=VIRE\",\"/videos/search?q=postman&FORM=VDRESM\",\"/videos/search?q=Postman+Tutorial&FORM=VARSQP\",\"/videos/search?q=How+to+Use+Postman&FORM=VARSQP\",\"/videos/search?q=Postman+Download&FORM=VARSQP\",\"/videos/search?q=Postman+Pat+Car&FORM=VARSQP\",\"/videos/search?q=Postman+API+Testing&FORM=VARSQP\",\"/videos/search?q=Postman+Pat+Watch+Online&FORM=VARSQP\",\"/videos/search?q=Postman+Pat&FORM=VARSQP\",\"/videos/search?q=Postman+Pat+Spy+Mission&FORM=VARSQP\",\"/videos/search?q=Postman+for+Beginners&FORM=VARSQP\",\"/videos/search?q=Postman+Pat+Character&FORM=VARSQP\",\"https://chrome.google.com/webstore/detail/postman/fhbjgbiflinjbdggehcddcbncdddomop\",\"javascript:void(0)\",\"https://chrome.google.com/webstore/detail/postman/fhbjgbiflinjbdggehcddcbncdddomop\",\"https://www.javatpoint.com/postman\",\"javascript:void(0)\",\"https://www.guru99.com/postman-tutorial.html\",\"javascript:void(0)\",\"https://www.guru99.com/postman-tutorial.html\",\"/images/search?q=postman&qpvt=postman&FORM=IGRE\",\"/images/search?q=postman&qpvt=postman&FORM=IGRE\",\"/images/search?q=Mailman+Postman&FORM=IARSLK\",\"/images/search?q=Funny+Postman&FORM=IARSLK\",\"/images/search?q=Postman+Hat&FORM=IARSLK\",\"/images/search?q=Old+Postman&FORM=IARSLK\",\"/images/search?q=Postman+Drawing&FORM=IARSLK\",\"/images/search?q=Postman+Letter&FORM=IARSLK\",\"/images/search?q=Postman+Poem&FORM=IARSLK\",\"/images/search?q=Postman+Movie&FORM=IARSLK\",\"/images/search?q=British+Postman&FORM=IARSLK\",\"/images/search?q=Postman+Costume&FORM=IARSLK\",\"/images/search?q=Postman+Logo&FORM=IARSLK\",\"/images/search?q=Postman+Jokes&FORM=IARSLK\",\"/images/search?q=postman&id=6E2096DD1B8065B6AEE886EF6EF70BAA0F3DE816&FORM=IQFRBA\",\"http://cliparts.co/postman\",\"/images/search?q=postman&id=6E2096DD1B8065B6AEE886EF6EF70BAA0F3DE816&FORM=IQFRBA\",\"/images/search?q=postman&id=26A0895D40951C30C709001E086CAFBEED66ABDB&FORM=IQFRBA\",\"https://www.pngarts.com/explore/122847\",\"/images/search?q=postman&id=26A0895D40951C30C709001E086CAFBEED66ABDB&FORM=IQFRBA\",\"/images/search?q=postman&id=A70C4D6315682F67076F06FCB569E0C42327C3F1&FORM=IQFRBA\",\"http://keywordsuggest.org/gallery/147735.html\",\"/images/search?q=postman&id=A70C4D6315682F67076F06FCB569E0C42327C3F1&FORM=IQFRBA\",\"/images/search?q=postman&id=FA37B598D4CDE4925A49C275F28BA860120B69E9&FORM=IQFRBA\",\"https://www.alamy.com/stock-photo-the-great-british-postman-postal-worker-on-the-streets-of-uk-48662622.html\",\"/images/search?q=postman&id=FA37B598D4CDE4925A49C275F28BA860120B69E9&FORM=IQFRBA\",\"/images/search?q=postman&id=FEE2360BE87A3C37753EAF4F39ADD6CA14B648C4&FORM=IQFRBA\",\"http://123wallpaperall.blogspot.com/2012/10/indian-postman.html\",\"/images/search?q=postman&id=FEE2360BE87A3C37753EAF4F39ADD6CA14B648C4&FORM=IQFRBA\",\"/images/search?q=postman&id=59CFBCA7EBF7BDF530B5859CAAB9ECEE39860D19&FORM=IQFRBA\",\"https://thetvdb.com/series/postman-pat\",\"/images/search?q=postman&id=59CFBCA7EBF7BDF530B5859CAAB9ECEE39860D19&FORM=IQFRBA\",\"/images/search?q=postman&qpvt=postman&FORM=IQFRML\",\"/images/search?q=postman&qpvt=postman&FORM=IQFRML\",\"javascript:void(0);\",\"javascript: void(0);\",\"/images/search?FORM=IARRTH&q=postman\",\"javascript:void(0);\",\"https://www.postman.com/\",\"https://www.postman.com/\",\"https://en.wikipedia.org/wiki/Postman_(software)\",\"https://twitter.com/getpostman\",\"https://www.linkedin.com/company/postman-platform/\",\"https://www.youtube.com/postman\",\"https://en.wikipedia.org/wiki/Postman_(software)\",\"https://www.postman.com/\",\"https://www.postman.com/\",\"/search?FORM=SNAPST&q=Postman+original+author(s)&filters=sid:\\\"06c84068-c3b7-03b1-641d-dd4654699f04\\\"\",\"/search?FORM=SNAPST&q=Postman+developer(s)&filters=sid:\\\"06c84068-c3b7-03b1-641d-dd4654699f04\\\"\",\"/search?FORM=SNAPST&q=Postman+initial+release&filters=sid:\\\"06c84068-c3b7-03b1-641d-dd4654699f04\\\"\",\"/search?FORM=SNAPST&q=Postman+stable+release&filters=sid:\\\"06c84068-c3b7-03b1-641d-dd4654699f04\\\"\",\"/search?FORM=SNAPST&q=Postman+operating+system&filters=sid:\\\"06c84068-c3b7-03b1-641d-dd4654699f04\\\"\",\"/search?FORM=SNAPST&q=Windows&filters=sid:\\\"16aeb6d9-9098-0a40-4970-8e46a4fcee12\\\"\",\"/search?FORM=SNAPST&q=macOS&filters=sid:\\\"a0d268ef-80dc-73e4-9ff9-98b3a233218a\\\"\",\"/search?FORM=SNAPST&q=Linux&filters=sid:\\\"d2f4e933-bfad-f184-fcf4-20042e4bed36\\\"\",\"/search?FORM=SNAPST&q=Postman+license&filters=sid:\\\"06c84068-c3b7-03b1-641d-dd4654699f04\\\"\",\"/search?FORM=SNAPST&q=Proprietary&filters=sid:\\\"23882beb-5706-d184-29bf-4a7366c5801b\\\"\",\"/search?FORM=SNAPST&q=open+source&filters=sid:\\\"02878418-990b-948e-fea0-9b4b12cd810a\\\"\",\"https://en.wikipedia.org\",\"https://creativecommons.org/licenses/by-sa/3.0/\",\"javascript:void(0)\",\"javascript:void(0)\",\"javascript:void(0)\",\"/search?FORM=KCEXPL&q=SoapUI&filters=sid:\\\"d1023cb5-66ed-a23b-8555-43a63e9c37b5\\\"+lite:\\\".S2NkUmVsYXRpb25eMDZjODQwNjgtYzNiNy0wM2IxLTY0MWQtZGQ0NjU0Njk5ZjA0Xl5eXiRFbnRpdHkyX2Vu\\\"\",\"/search?FORM=KCEXPL&q=Node.js&filters=sid:\\\"f76e2d03-f85b-1317-2921-c588e887566a\\\"+lite:\\\".S2NkUmVsYXRpb25eMDZjODQwNjgtYzNiNy0wM2IxLTY0MWQtZGQ0NjU0Njk5ZjA0Xl5eXiRFbnRpdHkyX2Vu\\\"\",\"/search?FORM=KCEXPL&q=visual+studio+code&filters=sid:\\\"3ae333c6-7c58-913a-9068-85ed01a699d2\\\"+lite:\\\".S2NkUmVsYXRpb25eMDZjODQwNjgtYzNiNy0wM2IxLTY0MWQtZGQ0NjU0Njk5ZjA0Xl5eXiRFbnRpdHkyX2Vu\\\"\",\"/search?FORM=KCEXPL&q=Git&filters=sid:\\\"cc1d8cd5-0990-d9d6-bb61-9b72c3fffc2e\\\"+lite:\\\".S2NkUmVsYXRpb25eMDZjODQwNjgtYzNiNy0wM2IxLTY0MWQtZGQ0NjU0Njk5ZjA0Xl5eXiRFbnRpdHkyX2Vu\\\"\",\"/search?FORM=KCEXPL&q=DBeaver&filters=sid:\\\"f62ff9ec-3308-7deb-1e89-2ca23e5354af\\\"+lite:\\\".S2NkUmVsYXRpb25eMDZjODQwNjgtYzNiNy0wM2IxLTY0MWQtZGQ0NjU0Njk5ZjA0Xl5eXiRFbnRpdHkyX2Vu\\\"\",\"/search?q=postman+download+for+windows+11&FORM=R5FD\",\"/search?q=postman+chrome+extension&FORM=R5FD1\",\"/search?q=postman+online+sign+in&FORM=R5FD2\",\"/search?q=postman+api+testing&FORM=R5FD3\",\"/search?q=postman+tutorial&FORM=R5FD4\",\"/search?q=postman+online&FORM=R5FD5\",\"/search?q=postman+web&FORM=R5FD6\",\"/search?q=download+postman+for+windows+10+64+bit&FORM=R5FD7\",\"http://go.microsoft.com/fwlink/?LinkId=521839\",\"http://go.microsoft.com/fwlink/?LinkID=246338\",\"https://go.microsoft.com/fwlink/?linkid=868922\",\"https://support.microsoft.com/topic/82d20721-2d6f-4012-a13d-d1910ccf203f\",\"#\",\"/search?q=postman&FORM=000017&qpvt=postman\",\"/search?q=postman&filters=ex1%3a%22ez1%22&FORM=000017&qpvt=postman\",\"/search?q=postman&filters=ex1%3a%22ez2%22&FORM=000017&qpvt=postman\",\"/search?q=postman&filters=ex1%3a%22ez3%22&FORM=000017&qpvt=postman\",\"/search?q=postman&filters=ex1%3a%22ez5_19016_19381%22&FORM=000017\"]"
+		}
+	]
+}

@@ -1,0 +1,279 @@
+{
+	"info": {
+		"_postman_id": "5f9516ed-470e-4504-8383-c5e06354fee0",
+		"name": "Day 20: Documentation",
+		"description": "## Instructions for Day 20: Documentation\n\n1.  **Get the challenge:** Fork [the parent collection `Day 20: Documentation`](https://www.postman.com/postman/workspace/30-days-of-postman-for-developers/documentation/1559645-0f00502d-d2d8-45fc-bd69-0fbb68eb5733) from the main workspace to your own public workspace.\n2.  **Read the documentation:** In your fork, select the first folder. Expand the context bar on the right to follow the instructions in the collection documentation.\n3.  **Submit your solution:** Select the second folder `Submit your solution` and follow the instructions in the documentation to validate your solution.\n    \n\n## Concepts covered\n\n*   [Documenting your API](https://learning.postman.com/docs/publishing-your-api/documenting-your-api/)\n    \n\n## Additional resources\n\n*   [The Good Documentation checklist](https://blog.postman.com/postman-good-documentation-checklist/)\n*   [The Ultimate API Publisher's Guide](https://medium.com/better-practices/the-ultimate-api-publishers-guide-be74a2692326)\n*   [Documentation](https://www.tiktok.com/@joycejetson/video/7072797681902521643) tiktok\n    \n\n## Next challenge\n\n*   [WebSockets](https://www.postman.com/postman/workspace/30-days-of-postman-for-developers/documentation/1559645-8b2c3197-1df3-44ba-9687-eba60470d270)",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "22912731"
+	},
+	"item": [
+		{
+			"name": "Collection Variable",
+			"item": [
+				{
+					"name": "collection variable",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://api.coindesk.com/v1/bpi/currentprice/btc.json",
+							"protocol": "https",
+							"host": [
+								"api",
+								"coindesk",
+								"com"
+							],
+							"path": [
+								"v1",
+								"bpi",
+								"currentprice",
+								"btc.json"
+							]
+						},
+						"description": "StartFragment\n\n- **Add a collection variable**: Highlight `https://api.coindesk.com` in the request URL and [set a new collection variable](https://learning.postman.com/docs/sending-requests/variables/#defining-variables) called `coindeskBaseUrl` with the value `https://api.coindesk.com`. Hover on the new variable to verify the variable is set at the proper scope (collection).\n    A collection variable is tightly coupled with the collection and can only be used with that collection. On the other hand, environment variables can be used across many collections, in the same way you've stored your Postman API key in the same environment to be used with different collections.\n    You can also create and edit collection variables by selecting the collection and tabbing over to **Variables**. We will also learn how to programmatically set variables in future challenges. Hit send to ensure a 200 status code, and save your changes.\n    \n\nEndFragment"
+					},
+					"response": [
+						{
+							"name": "collection variable",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "https://api.coindesk.com/v1/bpi/currentprice/btc.json",
+									"protocol": "https",
+									"host": [
+										"api",
+										"coindesk",
+										"com"
+									],
+									"path": [
+										"v1",
+										"bpi",
+										"currentprice",
+										"btc.json"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "script",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/javascript"
+								},
+								{
+									"key": "Content-Length",
+									"value": "487"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "max-age=15"
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 23 Jan 2023 19:03:53 GMT"
+								},
+								{
+									"key": "Expires",
+									"value": "Mon, 23 Jan 2023 19:04:07 UTC"
+								},
+								{
+									"key": "Server",
+									"value": "nginx/1.18.0"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "Fat-Free Framework"
+								},
+								{
+									"key": "X-Cache",
+									"value": "Miss from cloudfront"
+								},
+								{
+									"key": "Via",
+									"value": "1.1 4d474be393d7ef3b27b89fddae035482.cloudfront.net (CloudFront)"
+								},
+								{
+									"key": "X-Amz-Cf-Pop",
+									"value": "ORD58-P5"
+								},
+								{
+									"key": "X-Amz-Cf-Id",
+									"value": "4nQL1iuw-_LSej4itHOxTtaHVFNiR2oz2jbxZHV5pzkqon2qf5v1Sw=="
+								}
+							],
+							"cookie": [],
+							"body": "{\"time\":{\"updated\":\"Jan 23, 2023 19:02:00 UTC\",\"updatedISO\":\"2023-01-23T19:02:00+00:00\",\"updateduk\":\"Jan 23, 2023 at 19:02 GMT\"},\"disclaimer\":\"This data was produced from the CoinDesk Bitcoin Price Index (USD). Non-USD currency data converted using hourly conversion rate from openexchangerates.org\",\"bpi\":{\"USD\":{\"code\":\"USD\",\"rate\":\"22,828.2522\",\"description\":\"United States Dollar\",\"rate_float\":22828.2522},\"BTC\":{\"code\":\"BTC\",\"rate\":\"1.0000\",\"description\":\"Bitcoin\",\"rate_float\":1}}}"
+						}
+					]
+				}
+			],
+			"description": "StartFragment\n\nIt's time to work on your next challenge.\n\n- **Document a request**: Add a single request to the folder `Documentation`. It can be a request from an API we've used previously or any API that you like.You've been reading the documentation for instructions on each of these challenges thus far. These [descriptions](https://learning.postman.com/docs/publishing-your-api/authoring-your-documentation/#documenting-with-descriptions) provide more information about a collection, folder, request, parameter, or header and are [formatted in Markdown](https://learning.postman.com/docs/publishing-your-api/authoring-your-documentation/#markdown-demo-collection). Include the following to explain how to use the endpoint:\n    - Request description formatted in Markdown\n    - Include at least one hyperlink to official documentation in the request description\n    - Parameter description if you add any parameters\n    - Header description if you add any headers\n    - Save a successful response from the server as [an example](https://learning.postman.com/docs/sending-requests/examples/#response-from-the-server)\n- **Optional enhancements**: If it will help the user better understand how to use the endpoint, include the following (optional):\n    \n    - [Visualize](https://learning.postman.com/docs/sending-requests/visualizer/) the response to help the user interpret the data\n    - [Test](https://learning.postman.com/docs/writing-scripts/test-scripts/) to aid users who experience unexpected errors\n    - Screenshot to aid users, for example, showing users where to get an API key\n    - More examples demonstrating an unsuccessful response and other scenarios\n    - **Do not to leak any secrets!**\n    \n    Send your request to ensure a successful response and save your changes.\n    \n\nOnce you complete these steps, move on to the next folder in this collection to submit your solution. Follow the instructions in the request documentation.\n\nEndFragmen",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			]
+		},
+		{
+			"name": "Submit your solution",
+			"item": [
+				{
+					"name": "submit",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"// counter for passed tests\r",
+									"let pass = 0\r",
+									"let totalToPass = 5\r",
+									"\r",
+									"let collection = pm.response.json().collection\r",
+									"\r",
+									"pm.test(\"If you have any failures, review the failed test results or ask for support in the community forum. Remember to save your changes if you update the collection. When all of your tests pass, you are done with today's challenge.\", () => {\r",
+									"    pm.expect(true);\r",
+									"    pass += 1\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Status code is 200\", () => {\r",
+									"    pm.response.to.have.status(200);\r",
+									"    pass += 1\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Correct collection returned\", () => {\r",
+									"    pm.expect(collection.info.name).equals(\"Day 20: Documentation\")\r",
+									"    pass += 1\r",
+									"})\r",
+									"\r",
+									"pm.test(\"Request added correctly\", () => {\r",
+									"    pm.expect(collection.item[0].item.length, 'check number of requests').is.greaterThan(0)\r",
+									"\r",
+									"    pass += 1\r",
+									"})\r",
+									"\r",
+									"pm.test(\"Documentation added correctly\", () => {\r",
+									"    let firstRequest = collection.item[0].item[0]\r",
+									"    console.log(firstRequest.request);\r",
+									"    pm.expect(firstRequest.request.description, 'check request description').to.exist\r",
+									"    let firstMarkdownLinkRegex = /\\[(.+)\\]\\((.+)\\)/\r",
+									"    pm.expect(firstRequest.request.description.match(firstMarkdownLinkRegex).length, 'check hyperlink').to.equal(3)\r",
+									"\r",
+									"    if (firstRequest.request.url.query) {\r",
+									"        firstRequest.request.url.query.forEach( (param) => {\r",
+									"            pm.expect(param.description, 'check param description').to.exist\r",
+									"        })\r",
+									"        pm.expect(firstRequest.request.url.query.forEach( (param) => { param.description}))\r",
+									"    }\r",
+									"\r",
+									"    if (firstRequest.request.header) {\r",
+									"        firstRequest.request.header.forEach( (header) => {\r",
+									"            pm.expect(header.description, 'check header description').to.exist\r",
+									"        })\r",
+									"    }\r",
+									"\r",
+									"    pm.expect(firstRequest.response, 'check saved example').to.not.be.empty\r",
+									"\r",
+									"    pass += 1\r",
+									"})\r",
+									"\r",
+									"// visualization for test results\r",
+									"let template\r",
+									"if (pass == totalToPass) {\r",
+									"    template = `🍪 passing!\r",
+									"        <br />\r",
+									"        <img src=\"https://media1.giphy.com/media/c5eqVJN7oNLTq/giphy.gif?cid=ecf05e47ipdv9pm2ugb4rtqppcg4f291wve7s75ha1xocqhl&rid=giphy.gif&ct=g\" />\r",
+									"    `\r",
+									"} else {\r",
+									"    template = `🙅 please try again\r",
+									"        <br />\r",
+									"        <img src=\"https://media3.giphy.com/media/V6vNqIGP1RiMEwmMGV/giphy.gif?cid=ecf05e47dcpl5voxfkaw0l814ohtu15kcyvfe5x9lvyvc0sq&rid=giphy.gif&ct=g\" />\r",
+									"    `\r",
+									"}\r",
+									"pm.visualizer.set(template)"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "x-api-key",
+								"value": "{{postman_api_key}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "https://api.getpostman.com/collections/22912731-5f9516ed-470e-4504-8383-c5e06354fee0",
+							"protocol": "https",
+							"host": [
+								"api",
+								"getpostman",
+								"com"
+							],
+							"path": [
+								"collections",
+								"22912731-5f9516ed-470e-4504-8383-c5e06354fee0"
+							]
+						},
+						"description": "It's time to submit your solution.\n\n1. **Use a Postman environment:** Find the `Postman API env` environment from the previous challenge. Update the `collectionUid` with the current collection's ID.\n1. **Validate your solution**: Save your changes in the collection and environment. Hit **Send** and look under the **Tests** tab of the server response at the bottom to review your test results.\n\nIf you have any failures, review the failed test results or ask for support in the [community forum](https://community.postman.com/). When all of your tests pass, you are done with today's challenge. Remember to save your changes as you'll need to pass all the challenges to claim a **30 days of Postman** badge."
+					},
+					"response": []
+				}
+			],
+			"description": "Follow the instructions in the request documentation."
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "page",
+			"value": ""
+		}
+	]
+}

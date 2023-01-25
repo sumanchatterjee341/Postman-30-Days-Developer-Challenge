@@ -1,0 +1,203 @@
+{
+	"info": {
+		"_postman_id": "85071a18-d445-460b-beb7-bb480c98db05",
+		"name": "Cosmos",
+		"description": "A sample API that retrieves constellations as an example to demonstrate features in the OpenAPI 3.0 specification",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "22912731"
+	},
+	"item": [
+		{
+			"name": "cosmos",
+			"item": [
+				{
+					"name": "List all cosmos",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/cosmos",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"cosmos"
+							]
+						},
+						"description": "Returns all constellations in this sample dataset"
+					},
+					"response": [
+						{
+							"name": "An array of constellations",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/cosmos",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"cosmos"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"body": "{\n  \"id\": -37856587,\n  \"name\": \"cupidatat Duis ut e\",\n  \"tag\": \"tempor in eu proident\"\n}"
+						},
+						{
+							"name": "unexpected error",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/cosmos",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"cosmos"
+									]
+								}
+							},
+							"status": "Internal Server Error",
+							"code": 500,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"body": "{\n  \"code\": 62862237,\n  \"message\": \"irure minim sunt dolore non\"\n}"
+						}
+					]
+				},
+				{
+					"name": "Info for a specific constellation",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/cosmos/:cosmoId",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"cosmos",
+								":cosmoId"
+							],
+							"variable": [
+								{
+									"key": "cosmoId",
+									"value": "elit Ut ve",
+									"description": "(Required) The id of the constellation to retrieve"
+								}
+							]
+						},
+						"description": "Returns a constellation based on a single ID"
+					},
+					"response": [
+						{
+							"name": "Expected response to a valid request",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/cosmos/:cosmoId",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"cosmos",
+										":cosmoId"
+									],
+									"variable": [
+										{
+											"key": "cosmoId",
+											"value": "elit Ut ve",
+											"description": "(Required) The id of the constellation to retrieve"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"body": "{\n  \"id\": -1917407,\n  \"name\": \"dolor culpa occaecat Ut conseq\",\n  \"tag\": \"sit ea non amet\",\n  \"description\": \"eiusmod id irure ullamco\"\n}"
+						},
+						{
+							"name": "unexpected error",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/cosmos/:cosmoId",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"cosmos",
+										":cosmoId"
+									],
+									"variable": [
+										{
+											"key": "cosmoId",
+											"value": "elit Ut ve",
+											"description": "(Required) The id of the constellation to retrieve"
+										}
+									]
+								}
+							},
+							"status": "Internal Server Error",
+							"code": 500,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"body": "{\n  \"code\": 62862237,\n  \"message\": \"irure minim sunt dolore non\"\n}"
+						}
+					]
+				}
+			]
+		}
+	],
+	"variable": [
+		{
+			"key": "baseUrl",
+			"value": "https://2a6e0231-05f5-4028-8571-cbce1dcfb5b5.mock.pstmn.io",
+			"type": "string"
+		}
+	]
+}
